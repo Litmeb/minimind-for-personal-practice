@@ -87,4 +87,4 @@
 
     运行命令：`python eval_llm_metrics.py --llm_as_a_judge --deepseek_api_key`（在这里填入你的api key）
 
-3. 实现了注意力的可视化，可以进attentionvisualize.ipynb中试试
+3. 实现了注意力的读取，可以进attentionvisualize.ipynb中试试，不过功能不完善
