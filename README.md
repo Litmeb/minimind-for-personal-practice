@@ -1,0 +1,1 @@
+# minimind-for-personal-practice
