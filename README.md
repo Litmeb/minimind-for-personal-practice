@@ -6,7 +6,7 @@
 
 - [minimind-for-personal-practice](#minimind-for-personal-practice)
   - [目录](#目录)
-  - [运行之前需要先做预处理](#运行之前需要先做预处理)
+  - [运行之前的预处理](#运行之前的预处理)
   - [核心目标是做分类任务](#核心目标是做分类任务)
     - [1、LoRA训练](#1lora训练)
     - [2、Prompt Tuning](#2prompt-tuning)
@@ -16,7 +16,7 @@
 
 ---
 
-## 运行之前需要先做预处理
+## 运行之前的预处理
 
 把这个仓库的文件替换原文件夹中的同名文件，新的文件就直接放进对应位置，然后把数据集下载下来放进dataset文件夹，进入data_process.ipynb处理数据
 
