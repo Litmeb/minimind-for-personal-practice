@@ -294,12 +294,11 @@ def main():
     # ========== 4. 配置wandb ==========
     wandb = None
     if args.use_wandb and is_main_process():
-        import wandb as wandb_module
+        import wandb 
         wandb_id = ckp_data.get('wandb_id') if ckp_data else None
         resume = 'must' if wandb_id else None
         wandb_run_name = f"MiniMind-ProjHead-Epoch-{args.epochs}-BS-{args.batch_size}-LR-{args.learning_rate}"
-        wandb = wandb_module.init(
-            entity='xi-an-jiaotong-university-ltimbe',
+        wandb = wandb.init(
             project=args.wandb_project, 
             name=wandb_run_name, 
             id=wandb_id, 
