@@ -31,6 +31,7 @@
 **实现方式：**
 
 - 没改动什么，直接用MiniMind的LoRA训练代码
+- 改了一个bug：原来是只对q_proj、o_proj应用LoRA，现在改成对所有q_proj、k_proj、v_proj、o_proj应用LoRA
 - 增加了train/train_lora.py中的传入参数rank，使其能够训练不同rank的LoRA
 - 调整了model/model_lora.py中的apply_lora函数，使其能够正确地应用LoRA的rank
 
