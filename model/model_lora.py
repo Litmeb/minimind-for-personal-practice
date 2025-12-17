@@ -1,5 +1,7 @@
 import torch
 from torch import optim, nn
+import json
+import os
 
 
 # 定义Lora网络结构
@@ -18,16 +20,19 @@ class LoRA(nn.Module):
         return self.B(self.A(x))
 
 
-def apply_lora(model, rank=8):
+def apply_lora(model, rank=8, rank_map=None):
     for name, module in model.named_modules():
-        if 'q_proj' in name or 'k_proj' in name or 'v_proj' in name or 'o_proj' in name:
-            lora = LoRA(module.weight.shape[0], module.weight.shape[1], rank=rank).to(model.device)
+        if 'lora' not in name and ('q_proj' in name or 'k_proj' in name or 'v_proj' in name or 'o_proj' in name):
+            target_rank = rank_map.get(name, rank) if rank_map is not None else rank
+            # target_rank=max(8,target_rank)
+            lora = LoRA(module.weight.shape[1], module.weight.shape[0], rank=target_rank).to(model.device)
             setattr(module, "lora", lora)
             original_forward = module.forward
 
             # 显式绑定
             def forward_with_lora(x, layer1=original_forward, layer2=lora):
                 return layer1(x) + layer2(x)
+
 
             module.forward = forward_with_lora
 
@@ -47,3 +52,15 @@ def save_lora(model, path):
             lora_state = {f'{name}.lora.{k}': v for k, v in module.lora.state_dict().items()}
             state_dict.update(lora_state)
     torch.save(state_dict, path)
+
+def save_rank_map(rank_map, path):
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, 'w', encoding='utf-8') as f:
+        json.dump(rank_map, f, ensure_ascii=False, indent=2)
+
+
+def load_rank_map(path):
+    if not os.path.exists(path):
+        return None
+    with open(path, 'r', encoding='utf-8') as f:
+        return json.load(f)

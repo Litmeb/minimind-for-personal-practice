@@ -30,7 +30,7 @@ def _randomized_svd_rank(matrix: torch.Tensor, k: int, q: int, tau: float) -> in
     matrix_2d = matrix.detach().float()
     effective_k = min(k, matrix_2d.shape[0], matrix_2d.shape[1])
     if effective_k == 0:
-        return 0
+        return 0,None
 
     omega = torch.randn(matrix_2d.shape[1], effective_k, device=matrix_2d.device, dtype=matrix_2d.dtype)
     y = matrix_2d @ omega
@@ -40,20 +40,26 @@ def _randomized_svd_rank(matrix: torch.Tensor, k: int, q: int, tau: float) -> in
     q_matrix, _ = torch.linalg.qr(y, mode='reduced')
     b_matrix = q_matrix.transpose(0, 1) @ matrix_2d
     _, singular_values, _ = torch.linalg.svd(b_matrix, full_matrices=False)
+    sum_singular_values = torch.pow(singular_values, 2).sum()
+    p=torch.pow(singular_values, 2)/sum_singular_values
+    log_p=-(p*torch.log(p)).sum()
+    r_eff=torch.exp(log_p)
+
+
     singular_values = singular_values[:effective_k]
 
     if singular_values.numel() == 0:
-        return 0
+        return 0,r_eff
 
     energy = singular_values.pow(2)
     energy_sum = energy.sum()
     if energy_sum == 0:
-        return 0
+        return 0,r_eff
 
     coverage = torch.cumsum(energy, dim=0) / energy_sum
     rank_idx = torch.nonzero(coverage >= tau, as_tuple=False)
     rank = rank_idx[0, 0].item() + 1 if rank_idx.numel() > 0 else singular_values.numel()
-    return min(rank, effective_k)
+    return min(rank, effective_k),r_eff
 
 
 def estimate_ranks(model, loader, steps, autocast_ctx, tau, k, q, device):
@@ -89,9 +95,9 @@ def estimate_ranks(model, loader, steps, autocast_ctx, tau, k, q, device):
 
     rank_map = {}
     for name, grad in grad_sums.items():
-        rank = _randomized_svd_rank(grad, k=k, q=q, tau=tau)
+        rank,r_eff = _randomized_svd_rank(grad, k=k, q=q, tau=tau)
         rank_map[name] = rank if rank > 0 else 1
-        Logger(f"LoRA rank for {name}: {rank_map[name]}")
+        Logger(f"LoRA rank for {name}: {rank_map[name]} r_eff: {r_eff}")
 
     return rank_map
 class LoraDataset(Dataset):
@@ -268,7 +274,7 @@ def train_epoch(epoch, loader, iters, lora_params, start_step=0, wandb=None, tra
             save_lora(model, lora_save_path)
             lm_checkpoint(lm_config, weight=args.lora_name, model=model, optimizer=optimizer, scaler=scaler, epoch=epoch, step=step, wandb=wandb, save_dir='../checkpoints')
             model.train()
-
+        
         del X, Y, loss_mask, res, loss
     if train_ds:
         model.eval()
@@ -302,7 +308,7 @@ if __name__ == "__main__":
     parser.add_argument("--use_wandb", action="store_true", help="是否使用wandb")
     parser.add_argument("--wandb_project", type=str, default="MiniMind-SVDLoRA-en", help="wandb项目名")
     parser.add_argument('--rank', default=8, type=int, help="lora的秩")
-    parser.add_argument('--rank_eval_steps', default=10, type=int, help="用于rSVD估计秩的batch数量（0表示跳过）")
+    parser.add_argument('--rank_eval_steps', default=30, type=int, help="用于rSVD估计秩的batch数量（0表示跳过）")
     parser.add_argument('--svd_tau', default=0.95, type=float, help="rSVD能量覆盖率阈值τ")
     parser.add_argument('--svd_k', default=64, type=int, help="rSVD截断奇异值数k")
     parser.add_argument('--svd_q', default=2, type=int, help="rSVD幂迭代次数q (建议1-2)")
@@ -353,11 +359,11 @@ if __name__ == "__main__":
             else:
                 rank_map = estimate_ranks(model, rank_loader, args.rank_eval_steps, autocast_ctx, args.svd_tau, args.svd_k, svd_q, args.device)
 
-        if rank_map is not None and is_main_process():
-            save_rank_map(rank_map, rank_map_path)
-        apply_lora(model, rank_map=rank_map)
-    else:
-        apply_lora(model, rank=args.rank)
+        # if rank_map is not None and is_main_process():
+        #     save_rank_map(rank_map, rank_map_path)
+        # apply_lora(model, rank_map=rank_map)
+    # else:
+    apply_lora(model, rank=args.rank)
     # 统计参数
     total_params = sum(p.numel() for p in model.parameters())
     lora_params_count = sum(p.numel() for name, p in model.named_parameters() if 'lora' in name)
@@ -404,3 +410,23 @@ if __name__ == "__main__":
         else: # 默认从头开始
             loader = DataLoader(train_ds, batch_size=args.batch_size, shuffle=(train_sampler is None), sampler=train_sampler, num_workers=args.num_workers, pin_memory=True)
             train_epoch(epoch, loader, len(loader), lora_params, 0, wandb, train_ds)
+            for name, param in model.named_parameters():
+                param.requires_grad = True
+            if args.rank_eval_steps!=0:
+                rank_sampler = DistributedSampler(train_ds, shuffle=False) if dist.is_initialized() else None
+                rank_loader = DataLoader(train_ds, batch_size=args.batch_size, shuffle=False, sampler=rank_sampler, num_workers=args.num_workers, pin_memory=True)
+                svd_q = max(1, min(args.svd_q, 2))
+                rank_map = None
+                rank_map_path = os.path.join(args.save_dir, f"{args.lora_name}_{lm_config.hidden_size}_rank_map.json")
+                if args.rank_eval_steps > 0:
+                    if dist.is_initialized():
+                        if dist.get_rank() == 0:
+                            rank_map = estimate_ranks(model, rank_loader, args.rank_eval_steps, autocast_ctx, args.svd_tau, args.svd_k, svd_q, args.device)
+                        obj_list = [rank_map]
+                        dist.broadcast_object_list(obj_list, src=0)
+                        rank_map = obj_list[0]
+                    else:
+                        rank_map = estimate_ranks(model, rank_loader, args.rank_eval_steps, autocast_ctx, args.svd_tau, args.svd_k, svd_q, args.device)
+                for name, param in model.named_parameters():
+                    if 'lora' not in name:
+                        param.requires_grad = False

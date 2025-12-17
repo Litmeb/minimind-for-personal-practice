@@ -13,6 +13,9 @@
     - [3、Projection Head分类器](#3projection-head分类器)
     - [4、Adapter训练](#4adapter训练)
   - [其他功能](#其他功能)
+    - [1. 模型评估脚本（eval\_llm\_metrics.py）](#1-模型评估脚本eval_llm_metricspy)
+    - [2. LLM as a Judge评估（llm\_as\_a\_judge.py）](#2-llm-as-a-judge评估llm_as_a_judgepy)
+    - [3. 注意力可视化（attentionvisualize.ipynb）](#3-注意力可视化attentionvisualizeipynb)
 
 ---
 
@@ -26,7 +29,7 @@
 
 ### 1、LoRA训练
 
-运行命令：`python train/train_lora.py --rank 16 --epochs 15`
+运行命令：`python train/train_lora.py --rank 16 --epochs 15 --rank_eval_steps 0`
 
 **实现方式：**
 
@@ -34,6 +37,48 @@
 - 改了一个bug：原来是只对q_proj、o_proj应用LoRA，现在改成对所有q_proj、k_proj、v_proj、o_proj应用LoRA
 - 增加了train/train_lora.py中的传入参数rank，使其能够训练不同rank的LoRA
 - 调整了model/model_lora.py中的apply_lora函数，使其能够正确地应用LoRA的rank
+
+**基于SVD分解的自适应rank调整（新增功能）：**
+
+实现了基于随机SVD（Randomized SVD）的自适应rank选择机制，可以根据每层的梯度特征自动确定最优的LoRA rank，避免对所有层使用统一rank造成的参数浪费。
+
+**核心思路：**
+
+1. **梯度收集阶段**：在训练开始前，先进行少量batch的前向和反向传播，收集各目标层（q_proj、k_proj、v_proj、o_proj）的梯度矩阵
+
+2. **随机SVD分解**：对每个层的梯度矩阵进行随机SVD分解
+   - 使用随机投影矩阵Ω进行降维加速
+   - 进行q次幂迭代提升精度（通常q=1-2）
+   - 计算截断后的奇异值和能量分布
+
+3. **rank自动确定**：基于能量覆盖率（energy coverage）阈值τ确定最优rank
+   - 累积能量覆盖率 = Σ(σ²ᵢ) / Σ(σ²ⱼ)，其中σ为奇异值
+   - 找到覆盖率达到τ的最小rank（默认τ=0.95，即保留95%的能量）
+   - 为每层生成个性化的rank值
+
+4. **rank_map应用**：将生成的rank映射应用到LoRA初始化
+   - 保存rank_map到JSON文件，便于后续使用和复现
+   - 在apply_lora时使用rank_map为不同层分配不同rank
+
+**使用方法：**
+
+```bash
+# 使用SVD自适应rank（推荐）
+python train/train_lora.py --rank_eval_steps 30 --svd_tau 0.95 --svd_k 64 --svd_q 2
+
+# 参数说明：
+# --rank_eval_steps: 用于估计rank的batch数量（0表示跳过，使用固定rank）
+# --svd_tau: 能量覆盖率阈值（默认0.95，即保留95%梯度能量）
+# --svd_k: 随机SVD截断奇异值数（默认64，影响计算效率和精度）
+# --svd_q: 幂迭代次数（默认2，建议1-2，次数越多精度越高但速度越慢）
+```
+
+**优势：**
+
+- **参数效率**：不同层使用不同rank，避免参数浪费
+- **性能优化**：在保持性能的前提下最小化可训练参数量
+- **自动化**：无需手动调参，根据数据特征自动选择最优配置
+- **可复现**：rank_map保存为JSON，便于复现和对比实验
 
 ### 2、Prompt Tuning
 
@@ -80,12 +125,58 @@
 
 ## 其他功能
 
-1. 写了eval_llm_metrics.py可以评估模型的分类能力
-    
-    运行命令：`python eval_llm_metrics.py (--weight 权重名称) (--lora_weight LoRA权重名称) (--adapter_weight Adapter权重名称) (--prompt_tuning 20) (--projectionhead) (--projectionhead_cls_tuning) (--cls_tuning_weight cls_tuning_projection_head_classifier) (--rank 8) (--middle_features 8)`
+### 1. 模型评估脚本（eval_llm_metrics.py）
 
-2. 增加了llm_as_a_judge.py，用于评估模型的分类能力（虽然最后因为太贵了没用上）
+实现了统一的模型评估脚本，支持多种参数高效微调方法的评估：
 
-    运行命令：`python eval_llm_metrics.py --llm_as_a_judge --deepseek_api_key`（在这里填入你的api key）
+**功能特点：**
 
-3. 实现了注意力的读取，可以进attentionvisualize.ipynb中试试，不过功能不完善
+- 支持加载基础模型权重（--weight）
+- 支持LoRA权重评估（--lora_weight + --rank）
+- 支持Adapter权重评估（--adapter_weight + --middle_features）
+- 支持Prompt Tuning评估（--prompt_tuning num_virtual_tokens）
+- 支持Projection Head分类器评估（--projectionhead 或 --projectionhead_cls_tuning + --cls_tuning_weight）
+- 支持多种评估模式：生成式分类（让模型生成类别名称）和直接分类（使用projection head）
+
+**运行命令示例：**
+
+```bash
+# 评估LoRA模型
+python eval_llm_metrics.py --weight full_sft --lora_weight lora_classifier --rank 16
+
+# 评估Adapter模型
+python eval_llm_metrics.py --weight full_sft --adapter_weight adapter_classifier --middle_features 8
+
+# 评估Prompt Tuning模型
+python eval_llm_metrics.py --weight full_sft --prompt_tuning 20
+
+# 评估Projection Head分类器
+python eval_llm_metrics.py --weight full_sft --projectionhead_cls_tuning --cls_tuning_weight cls_tuning_projection_head_classifier
+```
+
+### 2. LLM as a Judge评估（llm_as_a_judge.py）
+
+使用大语言模型作为评判者来评估分类任务的准确性。实现了一个可选的评估模块，通过调用外部API（如DeepSeek）来判断模型生成的分类结果是否正确。
+
+**注意：** 由于API调用成本较高，此功能在实际项目中未使用，仅作为参考实现。
+
+**运行命令：**
+
+```bash
+python eval_llm_metrics.py --llm_as_a_judge --deepseek_api_key YOUR_API_KEY
+```
+
+### 3. 注意力可视化（attentionvisualize.ipynb）
+
+实现了注意力权重的读取和可视化功能，可以在Jupyter Notebook中查看模型在处理文本时的注意力分布。
+
+**功能说明：**
+
+- 支持加载训练好的模型（包括LoRA等变体）
+- 可以提取和可视化Transformer各层的注意力权重
+- 帮助理解模型的关注重点和决策过程
+- **注意：** 当前功能尚不完善，仍在开发中
+
+**使用方法：**
+
+在Jupyter Notebook中打开`attentionvisualize.ipynb`，配置模型路径和参数后运行即可。

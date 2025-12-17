@@ -1,0 +1,260 @@
+LoRA rank for model.layers.0.self_attn.q_proj: 2 r_eff: 2.207777738571167
+LoRA rank for model.layers.0.self_attn.k_proj: 6 r_eff: 3.501765727996826
+LoRA rank for model.layers.0.self_attn.v_proj: 4 r_eff: 2.5510482788085938
+LoRA rank for model.layers.0.self_attn.o_proj: 4 r_eff: 3.259747266769409
+LoRA rank for model.layers.1.self_attn.q_proj: 7 r_eff: 3.219125509262085
+LoRA rank for model.layers.1.self_attn.k_proj: 8 r_eff: 4.827887058258057
+LoRA rank for model.layers.1.self_attn.v_proj: 5 r_eff: 2.5869240760803223
+LoRA rank for model.layers.1.self_attn.o_proj: 11 r_eff: 4.5230302810668945
+LoRA rank for model.layers.2.self_attn.q_proj: 20 r_eff: 14.649580955505371
+LoRA rank for model.layers.2.self_attn.k_proj: 14 r_eff: 6.885376930236816
+LoRA rank for model.layers.2.self_attn.v_proj: 12 r_eff: 5.3579487800598145
+LoRA rank for model.layers.2.self_attn.o_proj: 17 r_eff: 9.485788345336914
+LoRA rank for model.layers.3.self_attn.q_proj: 15 r_eff: 7.978639602661133
+LoRA rank for model.layers.3.self_attn.k_proj: 9 r_eff: 5.037380218505859
+LoRA rank for model.layers.3.self_attn.v_proj: 10 r_eff: 5.401599407196045
+LoRA rank for model.layers.3.self_attn.o_proj: 14 r_eff: 7.800949573516846
+LoRA rank for model.layers.4.self_attn.q_proj: 15 r_eff: 9.052617073059082
+LoRA rank for model.layers.4.self_attn.k_proj: 9 r_eff: 5.912110805511475
+LoRA rank for model.layers.4.self_attn.v_proj: 6 r_eff: 4.0784454345703125
+LoRA rank for model.layers.4.self_attn.o_proj: 8 r_eff: 4.184345722198486
+LoRA rank for model.layers.5.self_attn.q_proj: 13 r_eff: 9.042752265930176
+LoRA rank for model.layers.5.self_attn.k_proj: 9 r_eff: 5.282136917114258
+LoRA rank for model.layers.5.self_attn.v_proj: 10 r_eff: 5.102213382720947
+LoRA rank for model.layers.5.self_attn.o_proj: 10 r_eff: 5.510782241821289
+LoRA rank for model.layers.6.self_attn.q_proj: 7 r_eff: 4.848516464233398
+LoRA rank for model.layers.6.self_attn.k_proj: 8 r_eff: 5.029685020446777
+LoRA rank for model.layers.6.self_attn.v_proj: 4 r_eff: 2.733471632003784
+LoRA rank for model.layers.6.self_attn.o_proj: 5 r_eff: 3.2360434532165527
+LoRA rank for model.layers.7.self_attn.q_proj: 4 r_eff: 2.2946808338165283
+LoRA rank for model.layers.7.self_attn.k_proj: 3 r_eff: 1.6468262672424316
+LoRA rank for model.layers.7.self_attn.v_proj: 3 r_eff: 1.8259332180023193
+LoRA rank for model.layers.7.self_attn.o_proj: 3 r_eff: 1.9050685167312622
+LLM 总参数量: 26.043 M
+LoRA 参数量: 0.213 M
+LoRA 参数占比: 0.82%
+Epoch:[1/5](10/114) loss:2.504353 lr:0.001099240758 epoch_Time:1.0min:
+Epoch:[1/5](20/114) loss:0.401036 lr:0.001096965339 epoch_Time:1.0min:
+Epoch:[1/5](30/114) loss:0.240238 lr:0.001093180652 epoch_Time:1.0min:
+Epoch:[1/5](40/114) loss:0.156229 lr:0.001087898191 epoch_Time:1.0min:
+Epoch:[1/5](50/114) loss:0.132640 lr:0.001081134000 epoch_Time:1.0min:
+Epoch:[1/5](60/114) loss:0.212989 lr:0.001072908621 epoch_Time:1.0min:
+Epoch:[1/5](70/114) loss:0.160219 lr:0.001063247034 epoch_Time:1.0min:
+Epoch:[1/5](80/114) loss:0.051893 lr:0.001052178580 epoch_Time:1.0min:
+Epoch:[1/5](90/114) loss:0.080245 lr:0.001039736876 epoch_Time:1.0min:
+Epoch:[1/5](100/114) loss:0.120710 lr:0.001025959704 epoch_Time:0.0min:
+Epoch:[1/5](110/114) loss:0.013330 lr:0.001010888908 epoch_Time:0.0min:
+Epoch:[1/5](113/114) loss:0.070634 lr:0.001006122154 epoch_Time:0.0min:
+Validation Accuracy: 273/404 = 0.68
+LoRA rank for model.layers.0.self_attn.q_proj: 2 r_eff: 1.5418248176574707
+LoRA rank for model.layers.0.self_attn.k_proj: 8 r_eff: 5.724276542663574
+LoRA rank for model.layers.0.self_attn.v_proj: 6 r_eff: 4.008938789367676
+LoRA rank for model.layers.0.self_attn.o_proj: 6 r_eff: 2.658358573913574
+LoRA rank for model.layers.1.self_attn.q_proj: 6 r_eff: 2.540070056915283
+LoRA rank for model.layers.1.self_attn.k_proj: 8 r_eff: 4.833481311798096
+LoRA rank for model.layers.1.self_attn.v_proj: 5 r_eff: 2.6677470207214355
+LoRA rank for model.layers.1.self_attn.o_proj: 6 r_eff: 2.1983697414398193
+LoRA rank for model.layers.2.self_attn.q_proj: 11 r_eff: 6.06306791305542
+LoRA rank for model.layers.2.self_attn.k_proj: 11 r_eff: 5.772640705108643
+LoRA rank for model.layers.2.self_attn.v_proj: 5 r_eff: 3.2224690914154053
+LoRA rank for model.layers.2.self_attn.o_proj: 5 r_eff: 2.360582113265991
+LoRA rank for model.layers.3.self_attn.q_proj: 4 r_eff: 1.9042160511016846
+LoRA rank for model.layers.3.self_attn.k_proj: 7 r_eff: 3.0367705821990967
+LoRA rank for model.layers.3.self_attn.v_proj: 7 r_eff: 3.280076742172241
+LoRA rank for model.layers.3.self_attn.o_proj: 8 r_eff: 3.7084977626800537
+LoRA rank for model.layers.4.self_attn.q_proj: 7 r_eff: 2.811551094055176
+LoRA rank for model.layers.4.self_attn.k_proj: 13 r_eff: 6.925123691558838
+LoRA rank for model.layers.4.self_attn.v_proj: 6 r_eff: 2.966809034347534
+LoRA rank for model.layers.4.self_attn.o_proj: 5 r_eff: 2.7589638233184814
+LoRA rank for model.layers.5.self_attn.q_proj: 6 r_eff: 2.9935457706451416
+LoRA rank for model.layers.5.self_attn.k_proj: 8 r_eff: 4.196431636810303
+LoRA rank for model.layers.5.self_attn.v_proj: 9 r_eff: 5.096602916717529
+LoRA rank for model.layers.5.self_attn.o_proj: 3 r_eff: 1.947267770767212
+LoRA rank for model.layers.6.self_attn.q_proj: 1 r_eff: 1.2780665159225464
+LoRA rank for model.layers.6.self_attn.k_proj: 5 r_eff: 3.451026678085327
+LoRA rank for model.layers.6.self_attn.v_proj: 3 r_eff: 1.8539682626724243
+LoRA rank for model.layers.6.self_attn.o_proj: 1 r_eff: 1.3070937395095825
+LoRA rank for model.layers.7.self_attn.q_proj: 1 r_eff: 1.3188586235046387
+LoRA rank for model.layers.7.self_attn.k_proj: 7 r_eff: 5.594211578369141
+LoRA rank for model.layers.7.self_attn.v_proj: 4 r_eff: 2.786750316619873
+LoRA rank for model.layers.7.self_attn.o_proj: 1 r_eff: 1.270017147064209
+Epoch:[2/5](10/114) loss:0.109178 lr:0.000987704371 epoch_Time:1.0min:
+Epoch:[2/5](20/114) loss:0.052353 lr:0.000969722800 epoch_Time:1.0min:
+Epoch:[2/5](30/114) loss:0.037370 lr:0.000950618392 epoch_Time:1.0min:
+Epoch:[2/5](40/114) loss:0.043544 lr:0.000930449168 epoch_Time:1.0min:
+Epoch:[2/5](50/114) loss:0.088263 lr:0.000909276381 epoch_Time:1.0min:
+Epoch:[2/5](60/114) loss:0.024837 lr:0.000887164331 epoch_Time:1.0min:
+Epoch:[2/5](70/114) loss:0.038678 lr:0.000864180173 epoch_Time:1.0min:
+Epoch:[2/5](80/114) loss:0.052362 lr:0.000840393709 epoch_Time:1.0min:
+Epoch:[2/5](90/114) loss:0.086410 lr:0.000815877176 epoch_Time:1.0min:
+Epoch:[2/5](100/114) loss:0.071113 lr:0.000790705032 epoch_Time:0.0min:
+Epoch:[2/5](110/114) loss:0.012855 lr:0.000764953723 epoch_Time:0.0min:
+Epoch:[2/5](113/114) loss:0.005276 lr:0.000757127043 epoch_Time:0.0min:
+Validation Accuracy: 290/404 = 0.72
+LoRA rank for model.layers.0.self_attn.q_proj: 4 r_eff: 2.507992744445801
+LoRA rank for model.layers.0.self_attn.k_proj: 18 r_eff: 10.198986053466797
+LoRA rank for model.layers.0.self_attn.v_proj: 11 r_eff: 6.539241790771484
+LoRA rank for model.layers.0.self_attn.o_proj: 13 r_eff: 4.965855598449707
+LoRA rank for model.layers.1.self_attn.q_proj: 19 r_eff: 6.372731685638428
+LoRA rank for model.layers.1.self_attn.k_proj: 14 r_eff: 6.952754974365234
+LoRA rank for model.layers.1.self_attn.v_proj: 7 r_eff: 3.0827043056488037
+LoRA rank for model.layers.1.self_attn.o_proj: 11 r_eff: 3.6252403259277344
+LoRA rank for model.layers.2.self_attn.q_proj: 29 r_eff: 12.945865631103516
+LoRA rank for model.layers.2.self_attn.k_proj: 26 r_eff: 14.392058372497559
+LoRA rank for model.layers.2.self_attn.v_proj: 12 r_eff: 4.795804977416992
+LoRA rank for model.layers.2.self_attn.o_proj: 15 r_eff: 5.339048385620117
+LoRA rank for model.layers.3.self_attn.q_proj: 22 r_eff: 6.286540508270264
+LoRA rank for model.layers.3.self_attn.k_proj: 21 r_eff: 9.753541946411133
+LoRA rank for model.layers.3.self_attn.v_proj: 14 r_eff: 4.978174209594727
+LoRA rank for model.layers.3.self_attn.o_proj: 19 r_eff: 7.309199333190918
+LoRA rank for model.layers.4.self_attn.q_proj: 20 r_eff: 7.641505241394043
+LoRA rank for model.layers.4.self_attn.k_proj: 18 r_eff: 7.854353904724121
+LoRA rank for model.layers.4.self_attn.v_proj: 9 r_eff: 4.220992088317871
+LoRA rank for model.layers.4.self_attn.o_proj: 10 r_eff: 4.632209777832031
+LoRA rank for model.layers.5.self_attn.q_proj: 14 r_eff: 5.53590202331543
+LoRA rank for model.layers.5.self_attn.k_proj: 11 r_eff: 4.650564670562744
+LoRA rank for model.layers.5.self_attn.v_proj: 9 r_eff: 4.629096984863281
+LoRA rank for model.layers.5.self_attn.o_proj: 6 r_eff: 3.1686007976531982
+LoRA rank for model.layers.6.self_attn.q_proj: 3 r_eff: 1.5940316915512085
+LoRA rank for model.layers.6.self_attn.k_proj: 5 r_eff: 2.8892812728881836
+LoRA rank for model.layers.6.self_attn.v_proj: 4 r_eff: 2.3675222396850586
+LoRA rank for model.layers.6.self_attn.o_proj: 4 r_eff: 2.0897152423858643
+LoRA rank for model.layers.7.self_attn.q_proj: 7 r_eff: 2.9303476810455322
+LoRA rank for model.layers.7.self_attn.k_proj: 17 r_eff: 8.002541542053223
+LoRA rank for model.layers.7.self_attn.v_proj: 6 r_eff: 3.693307399749756
+LoRA rank for model.layers.7.self_attn.o_proj: 3 r_eff: 2.0387818813323975
+Epoch:[3/5](10/114) loss:0.009655 lr:0.000728078092 epoch_Time:1.0min:
+Epoch:[3/5](20/114) loss:0.004124 lr:0.000701258718 epoch_Time:1.0min:
+Epoch:[3/5](30/114) loss:0.017538 lr:0.000674131824 epoch_Time:1.0min:
+Epoch:[3/5](40/114) loss:0.015013 lr:0.000646779794 epoch_Time:1.0min:
+Epoch:[3/5](50/114) loss:0.046343 lr:0.000619285696 epoch_Time:1.0min:
+Epoch:[3/5](60/114) loss:0.032149 lr:0.000591733028 epoch_Time:1.0min:
+Epoch:[3/5](70/114) loss:0.079719 lr:0.000564205466 epoch_Time:1.0min:
+Epoch:[3/5](80/114) loss:0.010070 lr:0.000536786611 epoch_Time:1.0min:
+Epoch:[3/5](90/114) loss:0.006456 lr:0.000509559733 epoch_Time:1.0min:
+Epoch:[3/5](100/114) loss:0.015456 lr:0.000482607519 epoch_Time:0.0min:
+Epoch:[3/5](110/114) loss:0.022236 lr:0.000456011822 epoch_Time:0.0min:
+Epoch:[3/5](113/114) loss:0.009632 lr:0.000448114742 epoch_Time:0.0min:
+Validation Accuracy: 298/404 = 0.74
+LoRA rank for model.layers.0.self_attn.q_proj: 7 r_eff: 3.330946445465088
+LoRA rank for model.layers.0.self_attn.k_proj: 17 r_eff: 8.84132194519043
+LoRA rank for model.layers.0.self_attn.v_proj: 9 r_eff: 4.798776149749756
+LoRA rank for model.layers.0.self_attn.o_proj: 14 r_eff: 5.246628761291504
+LoRA rank for model.layers.1.self_attn.q_proj: 17 r_eff: 5.865827560424805
+LoRA rank for model.layers.1.self_attn.k_proj: 14 r_eff: 7.102212429046631
+LoRA rank for model.layers.1.self_attn.v_proj: 6 r_eff: 3.3239500522613525
+LoRA rank for model.layers.1.self_attn.o_proj: 10 r_eff: 3.95176362991333
+LoRA rank for model.layers.2.self_attn.q_proj: 27 r_eff: 11.116710662841797
+LoRA rank for model.layers.2.self_attn.k_proj: 17 r_eff: 6.862735271453857
+LoRA rank for model.layers.2.self_attn.v_proj: 9 r_eff: 3.9054391384124756
+LoRA rank for model.layers.2.self_attn.o_proj: 14 r_eff: 5.21757698059082
+LoRA rank for model.layers.3.self_attn.q_proj: 27 r_eff: 10.115250587463379
+LoRA rank for model.layers.3.self_attn.k_proj: 23 r_eff: 10.336338996887207
+LoRA rank for model.layers.3.self_attn.v_proj: 10 r_eff: 3.474879026412964
+LoRA rank for model.layers.3.self_attn.o_proj: 14 r_eff: 4.616885185241699
+LoRA rank for model.layers.4.self_attn.q_proj: 26 r_eff: 11.885239601135254
+LoRA rank for model.layers.4.self_attn.k_proj: 22 r_eff: 10.77617359161377
+LoRA rank for model.layers.4.self_attn.v_proj: 7 r_eff: 2.994824171066284
+LoRA rank for model.layers.4.self_attn.o_proj: 6 r_eff: 2.7372004985809326
+LoRA rank for model.layers.5.self_attn.q_proj: 18 r_eff: 8.323159217834473
+LoRA rank for model.layers.5.self_attn.k_proj: 12 r_eff: 6.229018688201904
+LoRA rank for model.layers.5.self_attn.v_proj: 7 r_eff: 3.2277309894561768
+LoRA rank for model.layers.5.self_attn.o_proj: 4 r_eff: 2.6367759704589844
+LoRA rank for model.layers.6.self_attn.q_proj: 4 r_eff: 2.1017730236053467
+LoRA rank for model.layers.6.self_attn.k_proj: 7 r_eff: 4.11826753616333
+LoRA rank for model.layers.6.self_attn.v_proj: 3 r_eff: 1.8934452533721924
+LoRA rank for model.layers.6.self_attn.o_proj: 3 r_eff: 1.9576244354248047
+LoRA rank for model.layers.7.self_attn.q_proj: 5 r_eff: 2.0370330810546875
+LoRA rank for model.layers.7.self_attn.k_proj: 12 r_eff: 6.020535945892334
+LoRA rank for model.layers.7.self_attn.v_proj: 3 r_eff: 2.0085086822509766
+LoRA rank for model.layers.7.self_attn.o_proj: 3 r_eff: 1.7528818845748901
+Epoch:[4/5](10/114) loss:0.001394 lr:0.000419530335 epoch_Time:1.0min:
+Epoch:[4/5](20/114) loss:0.001863 lr:0.000394117247 epoch_Time:1.0min:
+Epoch:[4/5](30/114) loss:0.002212 lr:0.000369329419 epoch_Time:1.0min:
+Epoch:[4/5](40/114) loss:0.002881 lr:0.000345242129 epoch_Time:1.0min:
+Epoch:[4/5](50/114) loss:0.003517 lr:0.000321928531 epoch_Time:1.0min:
+Epoch:[4/5](60/114) loss:0.001939 lr:0.000299459426 epoch_Time:1.0min:
+Epoch:[4/5](70/114) loss:0.001339 lr:0.000277903054 epoch_Time:1.0min:
+Epoch:[4/5](80/114) loss:0.001279 lr:0.000257324879 epoch_Time:1.0min:
+Epoch:[4/5](90/114) loss:0.005441 lr:0.000237787398 epoch_Time:1.0min:
+Epoch:[4/5](100/114) loss:0.004159 lr:0.000219349944 epoch_Time:0.0min:
+Epoch:[4/5](110/114) loss:0.004853 lr:0.000202068512 epoch_Time:0.0min:
+Epoch:[4/5](113/114) loss:0.000921 lr:0.000197117447 epoch_Time:0.0min:
+Validation Accuracy: 300/404 = 0.74
+LoRA rank for model.layers.0.self_attn.q_proj: 4 r_eff: 2.1377134323120117
+LoRA rank for model.layers.0.self_attn.k_proj: 15 r_eff: 8.43267822265625
+LoRA rank for model.layers.0.self_attn.v_proj: 9 r_eff: 4.902721881866455
+LoRA rank for model.layers.0.self_attn.o_proj: 11 r_eff: 4.357917308807373
+LoRA rank for model.layers.1.self_attn.q_proj: 20 r_eff: 8.708734512329102
+LoRA rank for model.layers.1.self_attn.k_proj: 15 r_eff: 8.343063354492188
+LoRA rank for model.layers.1.self_attn.v_proj: 6 r_eff: 3.2979397773742676
+LoRA rank for model.layers.1.self_attn.o_proj: 8 r_eff: 3.5017130374908447
+LoRA rank for model.layers.2.self_attn.q_proj: 25 r_eff: 9.856307983398438
+LoRA rank for model.layers.2.self_attn.k_proj: 18 r_eff: 8.834135055541992
+LoRA rank for model.layers.2.self_attn.v_proj: 8 r_eff: 4.142950057983398
+LoRA rank for model.layers.2.self_attn.o_proj: 13 r_eff: 5.012185573577881
+LoRA rank for model.layers.3.self_attn.q_proj: 17 r_eff: 4.431698799133301
+LoRA rank for model.layers.3.self_attn.k_proj: 15 r_eff: 7.65634298324585
+LoRA rank for model.layers.3.self_attn.v_proj: 11 r_eff: 4.261785507202148
+LoRA rank for model.layers.3.self_attn.o_proj: 14 r_eff: 5.489926815032959
+LoRA rank for model.layers.4.self_attn.q_proj: 9 r_eff: 3.011908531188965
+LoRA rank for model.layers.4.self_attn.k_proj: 13 r_eff: 5.895054817199707
+LoRA rank for model.layers.4.self_attn.v_proj: 8 r_eff: 3.95329213142395
+LoRA rank for model.layers.4.self_attn.o_proj: 6 r_eff: 3.0705573558807373
+LoRA rank for model.layers.5.self_attn.q_proj: 12 r_eff: 4.5433030128479
+LoRA rank for model.layers.5.self_attn.k_proj: 13 r_eff: 7.572949409484863
+LoRA rank for model.layers.5.self_attn.v_proj: 9 r_eff: 4.626559734344482
+LoRA rank for model.layers.5.self_attn.o_proj: 4 r_eff: 2.743313789367676
+LoRA rank for model.layers.6.self_attn.q_proj: 2 r_eff: 1.6213271617889404
+LoRA rank for model.layers.6.self_attn.k_proj: 6 r_eff: 3.5841565132141113
+LoRA rank for model.layers.6.self_attn.v_proj: 3 r_eff: 1.9704923629760742
+LoRA rank for model.layers.6.self_attn.o_proj: 3 r_eff: 1.7921595573425293
+LoRA rank for model.layers.7.self_attn.q_proj: 3 r_eff: 2.32848858833313
+LoRA rank for model.layers.7.self_attn.k_proj: 14 r_eff: 5.909818649291992
+LoRA rank for model.layers.7.self_attn.v_proj: 4 r_eff: 2.4748361110687256
+LoRA rank for model.layers.7.self_attn.o_proj: 3 r_eff: 1.6871254444122314
+Epoch:[5/5](10/114) loss:0.002542 lr:0.000179915856 epoch_Time:1.0min:
+Epoch:[5/5](20/114) loss:0.001496 lr:0.000165615990 epoch_Time:1.0min:
+Epoch:[5/5](30/114) loss:0.001655 lr:0.000152635335 epoch_Time:1.0min:
+Epoch:[5/5](40/114) loss:0.002016 lr:0.000141013312 epoch_Time:1.0min:
+Epoch:[5/5](50/114) loss:0.001616 lr:0.000130785215 epoch_Time:1.0min:
+Epoch:[5/5](60/114) loss:0.001514 lr:0.000121982109 epoch_Time:1.0min:
+Epoch:[5/5](70/114) loss:0.001412 lr:0.000114630728 epoch_Time:1.0min:
+Epoch:[5/5](80/114) loss:0.001798 lr:0.000108753397 epoch_Time:1.0min:
+Epoch:[5/5](90/114) loss:0.001088 lr:0.000104367965 epoch_Time:1.0min:
+Epoch:[5/5](100/114) loss:0.004515 lr:0.000101487752 epoch_Time:0.0min:
+Epoch:[5/5](110/114) loss:0.005533 lr:0.000100121505 epoch_Time:0.0min:
+Epoch:[5/5](113/114) loss:0.001105 lr:0.000100007594 epoch_Time:0.0min:
+Validation Accuracy: 299/404 = 0.74
+LoRA rank for model.layers.0.self_attn.q_proj: 10 r_eff: 4.735720157623291
+LoRA rank for model.layers.0.self_attn.k_proj: 19 r_eff: 9.759657859802246
+LoRA rank for model.layers.0.self_attn.v_proj: 14 r_eff: 7.567374229431152
+LoRA rank for model.layers.0.self_attn.o_proj: 18 r_eff: 6.995752334594727
+LoRA rank for model.layers.1.self_attn.q_proj: 17 r_eff: 6.253565788269043
+LoRA rank for model.layers.1.self_attn.k_proj: 13 r_eff: 5.151649475097656
+LoRA rank for model.layers.1.self_attn.v_proj: 7 r_eff: 3.201442003250122
+LoRA rank for model.layers.1.self_attn.o_proj: 14 r_eff: 4.818892478942871
+LoRA rank for model.layers.2.self_attn.q_proj: 29 r_eff: 8.883617401123047
+LoRA rank for model.layers.2.self_attn.k_proj: 20 r_eff: 8.14703369140625
+LoRA rank for model.layers.2.self_attn.v_proj: 13 r_eff: 4.997143268585205
+LoRA rank for model.layers.2.self_attn.o_proj: 20 r_eff: 6.349725246429443
+LoRA rank for model.layers.3.self_attn.q_proj: 28 r_eff: 9.006975173950195
+LoRA rank for model.layers.3.self_attn.k_proj: 19 r_eff: 6.8146185874938965
+LoRA rank for model.layers.3.self_attn.v_proj: 16 r_eff: 5.472483158111572
+LoRA rank for model.layers.3.self_attn.o_proj: 23 r_eff: 8.592216491699219
+LoRA rank for model.layers.4.self_attn.q_proj: 25 r_eff: 10.11397933959961
+LoRA rank for model.layers.4.self_attn.k_proj: 19 r_eff: 8.437446594238281
+LoRA rank for model.layers.4.self_attn.v_proj: 10 r_eff: 4.2623162269592285
+LoRA rank for model.layers.4.self_attn.o_proj: 11 r_eff: 4.863094329833984
+LoRA rank for model.layers.5.self_attn.q_proj: 25 r_eff: 11.244538307189941
+LoRA rank for model.layers.5.self_attn.k_proj: 16 r_eff: 6.616565704345703
+LoRA rank for model.layers.5.self_attn.v_proj: 14 r_eff: 6.25964879989624
+LoRA rank for model.layers.5.self_attn.o_proj: 8 r_eff: 3.962181568145752
+LoRA rank for model.layers.6.self_attn.q_proj: 5 r_eff: 2.406818389892578
+LoRA rank for model.layers.6.self_attn.k_proj: 9 r_eff: 3.6431031227111816
+LoRA rank for model.layers.6.self_attn.v_proj: 6 r_eff: 2.765427589416504
+LoRA rank for model.layers.6.self_attn.o_proj: 7 r_eff: 3.559208393096924
+LoRA rank for model.layers.7.self_attn.q_proj: 5 r_eff: 2.9210758209228516
+LoRA rank for model.layers.7.self_attn.k_proj: 20 r_eff: 11.168670654296875
+LoRA rank for model.layers.7.self_attn.v_proj: 10 r_eff: 5.091676712036133
+LoRA rank for model.layers.7.self_attn.o_proj: 5 r_eff: 3.1479616165161133
